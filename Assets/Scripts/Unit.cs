@@ -19,6 +19,8 @@ public class Unit : MonoBehaviour {
 	public void UpdateAppearance (bool selected) {
 		isSelected = selected;
 		spriteRenderer.sprite = selected ? selectedSprite : unselectedSprite;
+
+		rangeInstance.GetComponent<SpriteRenderer>().enabled = selected;
 	}
 
 	bool isInMovementRange(Vector3 pos) {
@@ -36,6 +38,8 @@ public class Unit : MonoBehaviour {
 		// Scale it to represent the movementRange accurately
 		float rangeScale = movementRange * 2;
 		rangeInstance.transform.localScale = new Vector3 (rangeScale, rangeScale, 0f);
+
+		UpdateAppearance (false);
 	}
 	
 	// Update is called once per frame
